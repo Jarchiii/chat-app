@@ -129,5 +129,6 @@ function removeUser(userList, username){
 * @return userList {Object} Object with key value pairs of Users
 */
 function isUser(userList, username){
-      return username in userList
+  	return username in userList
 }
+

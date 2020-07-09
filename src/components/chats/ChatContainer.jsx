@@ -94,7 +94,7 @@ export class ChatContainer extends Component {
                              <Messages 
                                     messages={activeChat.messages}
                                     user={user}
-                                    typingUsers={activeChat.messages}
+                                    typingUsers={activeChat.typingUsers}
                                 />
 
                             <MessageInput
