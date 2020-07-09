@@ -15,8 +15,9 @@ setUser = ({user, isUser}) => {
     if(isUser){
         this.setError("User name taken")
     } else {
-        this.props.setUser(user)
         this.setError("")
+        this.props.setUser(user)
+
     }
 }
 
@@ -53,7 +54,7 @@ setError = (error) => {
                          id="nickname"
                          value={nickname}
                          onChange={this.handleChange}
-                         placeHolder={'MYCoolUsername'}
+                         placeholder={'MYCoolUsername'}
                         />
                          <button>ok</button>
                         <div className="error">{error ? error:null}</div>
