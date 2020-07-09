@@ -2,12 +2,27 @@ import React, { Component } from 'react';
 
 
 export default class SideBar extends Component{
+	constructor(props){
+		super(props)
+		this.state = {
+			reciever:""
+		}
+	}
+
+	handleSubmit = (e) => {
+		e.preventDefault()
+		const {reciever} = this.state
+		console.log(reciever)
+		const { onSendPrivateMessage } = this.props
+		onSendPrivateMessage(reciever)
+
+	}
 		
 
 		
 		render(){
 			const { chats, activeChat, user, setActiveChat, logout} = this.props
-			console.log("ici", chats)
+			const { reciever } = this.state
 			
 			return (
 				<div id="side-bar">
@@ -16,11 +31,15 @@ export default class SideBar extends Component{
 							<div className="menu">
 							</div>
 						</div>
-						<div className="search">
+						<form onSubmit={this.handleSubmit} className="search">
 							<i className="search-icon"></i>
-							<input placeholder="Search" type="text"/>
+							<input 
+							placeholder="Search" 
+							type="text"
+							value={reciever}
+							onChange={(e) => { this.setState({reciever:e.target.value})}}/>
 							<div className="plus"></div>
-						</div>
+						</form>
 						<div 
 							className="users" 
 							ref='users' 
@@ -30,9 +49,9 @@ export default class SideBar extends Component{
 							chats.map((chat)=>{
 								if(chat.name){
 									const lastMessage = chat.messages[chat.messages.length - 1];
-									const user = chat.users.find(({name})=>{
-										return name !== this.props.name
-									}) || { name:"Community" }
+									const chatSideName = chat.users.find(({name})=>{
+										return name !== user.name
+									}) || "Community" 
 									const classNames = (activeChat && activeChat.id === chat.id) ? 'active' : ''
 									
 									return(
@@ -41,9 +60,9 @@ export default class SideBar extends Component{
 										className={`user ${classNames}`}
 										onClick={ ()=>{ setActiveChat(chat) } }
 										>
-										<div className="user-photo">{user.name[0].toUpperCase()}</div>
+										<div className="user-photo">{chatSideName[0].toUpperCase()}</div>
 										<div className="user-info">
-											<div className="name">{user.name}</div>
+											<div className="name">{chatSideName}</div>
 											{lastMessage && <div className="last-message">{lastMessage.message}</div>}
 										</div>
 										
@@ -59,6 +78,7 @@ export default class SideBar extends Component{
 						<div className="current-user">
 							<span>{user.name}</span>
 							<div onClick={()=>{logout()}} title="Logout" className="logout">
+								LOGOUT
 							</div>
 						</div>
 				</div>

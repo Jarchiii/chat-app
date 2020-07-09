@@ -1,10 +1,11 @@
 const { uuid } = require('uuidv4');
 
-const createUser = ({name=""} = {})=>(
+const createUser = ({name="", socketId = null} = {})=>(
 
     {
         id:uuid(), 
-        name
+        name,
+        socketId
     }
 )
 
