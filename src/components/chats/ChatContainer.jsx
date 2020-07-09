@@ -35,7 +35,7 @@ export class ChatContainer extends Component {
         const messageEvent = `${MESSAGE_RECIEVED}-${chat.id}` 
         const typingEvent = `${TYPING}-${chat.id}` 
 
-        socket.on(typingEvent)
+        socket.on(typingEvent, this.updateTypingInChat(chat.id))
         socket.on(messageEvent, this.addMessageToChat(chat.id))
     }
 
@@ -54,6 +54,24 @@ export class ChatContainer extends Component {
     }
 
     updateTypingInChat = (chatId) => {
+        return ({isTyping, user})=> {
+            if (user !==this.props.user.name){
+                const {chats} = this.state
+                let newChats = chats.map((chat)=>{
+                    if (chat.id === chatId){
+                        if (isTyping && !chat.typingUsers.includes(user)){
+                            chat.typingUsers.push(user)
+                        } else if (!isTyping && chat.typingUsers.includes(user)){
+                            chat.typingUsers = chat.typingUsers.filter(u => u !== user)
+
+                        }
+                    }
+
+                    return chat
+                })
+                this.setState({chats:newChats})
+            }
+        }
 
     }
 
@@ -105,7 +123,7 @@ export class ChatContainer extends Component {
                                 }
                                 sendTyping={
                                     (isTyping)=>{
-                                        this.sendTyping(activeChat, isTyping)
+                                        this.sendTyping(activeChat.id, isTyping)
                                     }
                                 }
                                 />

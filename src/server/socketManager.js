@@ -70,6 +70,7 @@ module.exports = function(socket){
 	})
 
 	socket.on(TYPING, ({chatId, isTyping})=>{
+        console.log(chatId, isTyping)
 		sendTypingFromUser(chatId, isTyping)
 	})
 
