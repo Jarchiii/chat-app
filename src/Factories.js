@@ -22,7 +22,7 @@ const createMessage = ({message="", sender=""}= {} ) => (
 
 
 
-const createChat = ({messages=[], name="Community", users=[], isCommunity = false}= {})=>(
+const createChat = ({messages=[], name = "Community", users=[], isCommunity = false}= {})=>(
 {
     id:uuid(),
     name: isCommunity ? "Community" : createChatNameFromUsers(users),
