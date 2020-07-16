@@ -24,7 +24,7 @@ export class SideBarOption   extends Component {
         return (
             <div  
             className={`user ${active ? 'active' : ''}`}
-            onClick={ onClick }
+            onClick={ onClick  }
             >
             <div className="user-photo">{name[0].toUpperCase()}</div>
             <div className="user-info">
