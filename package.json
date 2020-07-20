@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "cors": "^2.8.5",
     "http": "0.0.1-security",
     "lodash": "^4.17.19",
     "node-sass": "^4.14.1",
@@ -18,7 +19,7 @@
     "uuidv4": "^6.1.1"
   },
   "scripts": {
-    "start" : "node src/server/index.js",
+    "start": "node src/server/index.js",
     "dev": "concurrently 'npm run react' 'npm run server'",
     "react": "react-scripts start",
     "build": "react-scripts build",
