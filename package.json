@@ -18,7 +18,8 @@
     "uuidv4": "^6.1.1"
   },
   "scripts": {
-    "start": "concurrently 'npm run react' 'npm run server'",
+    "start" : "node src/server/index.js",
+    "dev": "concurrently 'npm run react' 'npm run server'",
     "react": "react-scripts start",
     "build": "react-scripts build",
     "server": "nodemon src/server/index.js",
