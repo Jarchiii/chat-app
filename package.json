@@ -9,7 +9,7 @@
     "cors": "^2.8.5",
     "http": "0.0.1-security",
     "lodash": "^4.17.19",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-icons": "^3.10.0",
